@@ -16,7 +16,8 @@ module.exports = function (grunt) {
             appLess: {
                 files:
                 {
-                    'intermediate/MyApp/css/start.css': ['AppStylesheets/start.less']
+                    'intermediate/MyApp/css/start.css': ['AppStylesheets/start.less'],
+                    'intermediate/MyApp/css/test.css': ['AppStylesheets/test.less']
                 }
             }
         },
@@ -46,6 +47,13 @@ module.exports = function (grunt) {
                 src: ['intermediate/MyApp/css/*.css'],
                 dest: 'dist/MyApp/css/bundle.css'
             }
+        },
+
+        watch: {
+            scripts: {
+                files: ['AppStylesheets/**/*.less'],
+                tasks: ['default']
+            }
         }
 
 
@@ -54,6 +62,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     // Default task(s).
     grunt.registerTask('default', ['less', 'postcss', 'concat']);
